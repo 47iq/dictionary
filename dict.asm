@@ -1,7 +1,7 @@
 section .text
 global find_word
 
-extern string_length
+; extern string_length
 extern string_equals
 
 
@@ -9,7 +9,7 @@ extern string_equals
 ; rsi - адрес начала linked list
 ; rdi - указатель на нуль-терминированную строку (ключ)
 ; Возвращает: 
-; rax - адрес найденного элемента, либо 0 при его отсутствии
+; rax - адрес начала вхождения найденного элемента, либо 0 при его отсутствии
 
 find_word:
 .loop:
@@ -24,12 +24,7 @@ find_word:
 	je .not_found 			; то завершаем поиск
 	jmp .loop 				; 
 .found:
-    add rsi, 8 				; 
-    push rsi 				;
-    call string_length 		;  
-    pop rsi 				; rsi = len
-    add rax, rsi 			;
-    inc rax 				; rax = addr
+    mov rax, rsi 			; rax = адрес начала вхождения 
     ret 					;
 .not_found:
     xor rax, rax 			; 

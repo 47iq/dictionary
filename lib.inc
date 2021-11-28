@@ -53,7 +53,7 @@ print_char:
 ; Переводит строку (выводит символ с кодом 0xA)
 print_newline:
 	xor rax, rax
-	mov rdi, 10
+	mov rdi, 0xA
 	call print_char
 	ret
 
